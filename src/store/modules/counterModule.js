@@ -24,7 +24,7 @@ export default {
       return commit("DECR_COUNTER");
     },
     incrementCounterBy({ commit }, payload) {
-      return commit("INCR_COUNT_BY", payload);
+      return commit("INCR_COUNTER_BY", payload);
     },
   },
 };

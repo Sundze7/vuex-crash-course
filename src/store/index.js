@@ -3,7 +3,7 @@ import counterModule from "./modules/counterModule";
 
 export default createStore({
   state: {
-    counter: counterModule.state,
+    counterState: counterModule.state,
   },
   mutations: {},
   actions: {},
