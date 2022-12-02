@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import VuexCounter from "@/components/vuex/VuexCounter";
-import Employees from "@/components/Employees";
+import VuexEmployees from "@/components/vuex/VuexEmployees";
 import UserList from "@/components/UserList";
 
 const routes = [
@@ -18,7 +18,7 @@ const routes = [
   {
     path: "/employees",
     name: "employees",
-    component: Employees,
+    component: VuexEmployees,
   },
   {
     path: "/users",
