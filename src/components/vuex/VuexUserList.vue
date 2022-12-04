@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <div v-if="loading" class="container">
+  <div v-if="userState.loading" class="container">
     <div class="row">
       <div class="col">
         <spinner />
@@ -21,15 +21,18 @@
     </div>
   </div>
 
-  <div v-if="!loading && errorMessage" class="container">
+  <div v-if="!userState.loading && userState.errorMessage" class="container">
     <div class="row">
       <div class="col">
-        <p class="fw-bold text">{{ errorMessage }}</p>
+        <p class="fw-bold text">{{ userState.errorMessage }}</p>
       </div>
     </div>
   </div>
 
-  <div v-if="!loading && users.length > 0" class="container">
+  <div
+    v-if="!userState.loading && userState.users.length > 0"
+    class="container"
+  >
     <div class="row">
       <div class="col">
         <table class="table table-hover text-center table-striped">
@@ -44,7 +47,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="user in users" :key="user.id">
+            <tr v-for="user in userState.users" :key="user.id">
               <td>{{ user.id }}</td>
               <td>{{ user.name }}</td>
               <td>{{ user.email }}</td>
@@ -60,31 +63,18 @@
 </template>
 
 <script>
-import axios from "axios";
 import Spinner from "@/components/Spinner.vue";
+import { mapGetters } from "vuex";
 
 export default {
-  name: "UserList",
+  name: "VuexUserList",
   components: { Spinner },
-  data() {
-    return {
-      loading: false,
-      users: [],
-      errorMessage: null,
-    };
+  created() {
+    this.$store.dispatch("usersModule/getUsers");
   },
-  async created() {
-    try {
-      this.loading = true;
-      let dataURL = "https://jsonplaceholder.typicode.com/users";
-      let response = await axios.get(dataURL);
-      this.users = response.data;
-      this.loading = false;
-    } catch (error) {
-      this.loading = false;
-      this.errorMessage = error;
-    }
-  },
+  computed: mapGetters({
+    userState: "getUsersState",
+  }),
 };
 </script>
 

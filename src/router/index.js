@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import VuexCounter from "@/components/vuex/VuexCounter";
 import VuexEmployees from "@/components/vuex/VuexEmployees";
-import UserList from "@/components/UserList";
+import VuexUserList from "@/components/vuex/VuexUserList";
 
 const routes = [
   {
@@ -23,7 +23,7 @@ const routes = [
   {
     path: "/users",
     name: "userlist",
-    component: UserList,
+    component: VuexUserList,
   },
 ];
 
